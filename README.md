@@ -8,13 +8,13 @@
  
  I used an already developed Python classifier to identify dog breeds. 
  
- The classifier uses a deep learning model (convolutional neural network, short CNN).
+ The classifier used a deep learning model (convolutional neural network, short CNN).
  
  The CNNs were trained on 1.2 million images from ImageNet. 
  
  I explored three different CNN architectures (AlexNet, VGG and ResNET) and determine which is best for the application.
  
- To determine the best algorithm (CNN architecture) I will measure the time it takes for the program to run and the 
+ To determine the best algorithm (CNN architecture) I measured the time it took for the programs to run and the 
  
  prediction accuracy.
  
