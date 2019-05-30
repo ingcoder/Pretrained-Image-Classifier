@@ -131,7 +131,70 @@ The classifier class was created by Udacity.com and used the resnet18, alexnet a
     pred_idx = output.data.numpy().argmax()
 
     return imagenet_classes_dict[pred_idx]
+
+### Use Pre-trained Classifier
+Define classify_images function. 
+Creates classifier labels with classifier function, compares pet labels to 
+the classifier labels, and adds the classifier label and the comparison of 
+the labels to the results dictionary using the extend function.
+This function doesn't return anything because the 
+results_dic dictionary that is passed into the function is a mutable 
+data type so no return is needed.
+
+    from classifier import classifier 
+    i = 0
+    
+    for filename in results_dic:      
+        test_image = images_dir+filename
+        image_classification = classifier(test_image, model)
+        edit_image_classifier = image_classification.lower().strip()
+        pet_label = results_dic[filename][0]
+        if i < 40:
+            if pet_label in edit_image_classifier:            
+                results_dic[filename].extend([edit_image_classifier, 1])
+            else: 
+                results_dic[filename].extend([edit_image_classifier, 0])
+            i += 1
+        else: 
+            break
+    None 
  
+### Print results
+Prints summary results on the classification and then prints incorrectly 
+classified dogs and incorrectly classified dog breed
+
+    def print_results(results_dic, results_stats_dic, model, 
+                  print_incorrect_dogs = False, print_incorrect_breed = False):
+                  
+    #print summary on classification
+     message = "\n This is the result for CNN model: {}.\n number of images {}. % of correct dog images: {}.\n 
+     number of dog images: {}. % of         correct breed: {}.\n number of not a dog image:{}. % of 
+     correct not dog bread {}.".format(model.upper(), results_stats_dic.get('n_images'),   
+     results_stats_dic.get('pct_correct_dogs'), results_stats_dic.get('n_dogs_img'), 
+     results_stats_dic.get('pct_correct_breed'), results_stats_dic.get('n_notdogs_img'), 
+     results_stats_dic.get('pct_correct_notdogs'))
+
+     print(message)
+
+    #conditional print misclassified dogs
+    if (print_incorrect_dogs or print_incorrect_breeds) and (results_stats_dic['n_correct_dogs'] !=  
+    results_stats_dic['n_correct_breed'] or (results_stats_dic['n_correct_dogs'] + results_stats_dic['n_correct_non_dogs'] != 
+    results_stats_dic['n_images']) ):
+        
+        print('There were mismatches')
+      
+        for key in results_dic:
+            #print misclassified dogs
+            if sum(results_dic[key][3:]) == 1:
+                print('Missclassification. One label classified as dog {0:100}'.format(results_dic[key][0]))
+                
+            
+            elif sum(results_dic[key][3:]) == 2 and results_dic[key][2] == 0:
+                print('Missclassification. One label classified breed {:>30}'.format(results_dic[key][1]))
+          
+    None
+                
+
    
    
    
