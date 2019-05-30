@@ -6,15 +6,12 @@
  DATE CREATED: 11/12/2018 
  This project was done as part of the Udacity pone degree program "AI Programming with Python"
  
- I used an already developed Python classifier to identify dog breeds. 
  
- The classifier used a deep learning model (convolutional neural network, short CNN).
- 
- The CNNs were trained on 1.2 million images from ImageNet. 
- 
- I explored three different CNN architectures (AlexNet, VGG and ResNET) and determine which is best for the application.
- 
- To determine the best algorithm (CNN architecture) I measured the time it took for the programs to run and the 
- 
- prediction accuracy.
- 
+ ## Description
+This is a script to identify images of dog breeds using a pretrained classifier. 
+that was trained on 1.2 million images from ImageNet. 
+The classifier uses threi different deep learning models (convolutional neural network, short CNN):
+- AlexNet 
+- VGG16  
+- ResNET18
+The best model for the application will be determined by measuring performance time and prediction accuracy. 
